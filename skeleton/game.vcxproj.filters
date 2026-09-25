@@ -13,6 +13,7 @@
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Vector3D.cpp" />
+    <ClCompile Include="Particle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.hpp" />
@@ -29,6 +30,8 @@
     <ClInclude Include="EmptyScene.h" />
     <ClInclude Include="Vector3D.h" />
     <ClInclude Include="P0S_Scene.h" />
+    <ClInclude Include="P1_Scene.h" />
+    <ClInclude Include="Particle.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Render">

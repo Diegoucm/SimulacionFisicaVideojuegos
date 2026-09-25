@@ -12,6 +12,8 @@ class Vector3D
 
 	Vector3D() : x(0), y(0), z(0) {}
 	Vector3D(float x, float y, float z) : x(x), y(y), z(z) {}
+	Vector3D(const physx::PxVec3& v) : x(v.x), y(v.y), z(v.z) {}
+	Vector3D(const Vector3D& v) : x(v.x), y(v.y), z(v.z) {}
 
 	float magnitude() const {
 		return sqrt(x * x + y * y + z * z);
@@ -65,6 +67,24 @@ class Vector3D
 			z = other.z;
 		}
 		return *this;
+	}
+
+	Vector3D& operator*=(float scalar) {
+		x *= scalar;
+		y *= scalar;
+		z *= scalar;
+		return *this;
+	}
+
+	Vector3D& operator-=(const Vector3D& other) {
+		x -= other.x;
+		y -= other.y;
+		z -= other.z;
+		return *this;
+	}
+
+	Vector3D operator-() const { // negacion, util mas adelante para fuerzas
+		return Vector3D(-x, -y, -z);
 	}
 
 	//Wrapper de conversion a PhysX Vector3
