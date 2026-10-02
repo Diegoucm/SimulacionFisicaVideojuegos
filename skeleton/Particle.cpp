@@ -3,6 +3,7 @@
 Particle::Particle(Vector3D p, Vector3D v, Vector3D a, float damp) : pos(physx::PxVec3(p.x, p.y, p.z)), vel(v), acc(a), damping(damp) {
 	physx::PxShape* shape = CreateShape(physx::PxSphereGeometry(1.0f));
 	renderItem = new RenderItem(shape, &pos, Vector4(1.0f, 0.0f, 0.0f, 1.0f));
+	w = 1.0f;
 }
 
 

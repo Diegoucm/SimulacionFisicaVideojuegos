@@ -52,15 +52,16 @@ public:
     }
 
     void cleanup() override {
-        if (m_renderItem) {
-            m_renderItem->release(); // Deregistra y destruye el item
-            m_renderItem = nullptr;
-        }
+
+        for (Particle* particle : m_particles) {
+            if (particle) {
+                delete particle; // Liberamos memoria de cada partícula
+            }
+		}
     }
 
 private:
     physx::PxTransform m_transform;
-    RenderItem* m_renderItem{ nullptr };
 
 	// Vector para almacenar las partículas
 	std::vector<Particle*> m_particles;

@@ -10,13 +10,20 @@ class Particle
 public:
 	Particle(Vector3D p, Vector3D v, Vector3D a, float damp); // por ahora metemos la aceleracion aque pero luego lo quitaremos y la acel solo cambiara con fuerzas que se apliquen.
 
-	~Particle();
+	virtual ~Particle();
 
 	void integrate(double t, TipoIntegracion tipoIntegr);
 
 	physx::PxTransform getPosition() const { return pos; }
 
-private:
+	float getMass() const { return 1.0f / w; } // inversa
+	void setMass(float mass) { w = 1.0f / mass; }
+
+	void setVel(Vector3D v) { vel = v; }
+
+	void setAcc(Vector3D a) { acc = a; }
+
+protected:
 	Vector3D vel;
 	physx::PxTransform pos;
 	RenderItem* renderItem;
@@ -27,8 +34,6 @@ private:
 
 	// por ahora guardamos aceleracion aunque luego no hara falta
 	Vector3D acc;
-
-
 
 };
 
