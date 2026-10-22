@@ -1,8 +1,9 @@
 #include "Particle.h"
 
-Particle::Particle(Vector3D p, Vector3D v, Vector3D a, float damp) : pos(physx::PxVec3(p.x, p.y, p.z)), vel(v), acc(a), damping(damp) {
-	physx::PxShape* shape = CreateShape(physx::PxSphereGeometry(1.0f));
-	renderItem = new RenderItem(shape, &pos, Vector4(1.0f, 0.0f, 0.0f, 1.0f));
+Particle::Particle(Vector3D p, Vector3D v, Vector3D a, float damp, float radius, Vector4 color)
+	: pos(physx::PxVec3(p.x, p.y, p.z)), vel(v), acc(a), damping(damp) {
+	physx::PxShape* shape = CreateShape(physx::PxSphereGeometry(radius));
+	renderItem = new RenderItem(shape, &pos, color);
 	w = 1.0f;
 }
 
@@ -27,6 +28,8 @@ void Particle::integrate(double t, TipoIntegracion tipoIntegr) {
 	float dt = static_cast<float>(t);	// internamente al operar con vectores de PhysX, 
 										// es mejor usar float que double ya que physx trabaja con float 
 										// y lo va a convertir de todos modos por debajo.
+
+	age += dt; // vamos actualizando la edad
 
 	if (tipoIntegr == TipoIntegracion::Euler) { // Euler
 		pos.p += vel.toPxVec3() * dt;
