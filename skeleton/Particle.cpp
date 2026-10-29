@@ -31,15 +31,19 @@ void Particle::integrate(double t, TipoIntegracion tipoIntegr) {
 
 	age += dt; // vamos actualizando la edad
 
+	Vector3D totalAcc = acc;
+	totalAcc += force * w;   // a = F/m = F * w
+
 	if (tipoIntegr == TipoIntegracion::Euler) { // Euler
 		pos.p += vel.toPxVec3() * dt;
-		vel += acc * dt;
+		vel += totalAcc * dt;
 		vel *= std::pow(damping, dt);
 	}
 	else if (tipoIntegr == TipoIntegracion::EulerSemiExplic) { // Euler semi explicito
-		vel += acc * t;
+		vel += totalAcc * t;
 		vel *= std::pow(damping, dt);
 		pos.p += vel.toPxVec3() * dt;
 	}
 
+	force = Vector3D(0, 0, 0); // limpiamos el acumulador de fuerzas
 }

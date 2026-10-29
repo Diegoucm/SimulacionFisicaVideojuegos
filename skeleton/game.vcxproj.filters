@@ -38,6 +38,10 @@
     <ClInclude Include="P2_Scene.h" />
     <ClInclude Include="ParticleGenerator.h" />
     <ClInclude Include="ParticleSystem.h" />
+    <ClInclude Include="ForceGenerator.h" />
+    <ClInclude Include="GravityGenerator.h" />
+    <ClInclude Include="ForceRegistry.h" />
+    <ClInclude Include="P3_Scene.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Render">
