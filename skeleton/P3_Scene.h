@@ -3,6 +3,7 @@
 #include <vector>
 #include "Particle.h"
 #include "GravityGenerator.h"
+#include "WindGenerator.h"
 #include "ForceRegistry.h"
 #include <cstdio>
 
@@ -13,6 +14,9 @@ public:
     void init() override {
         m_gravity = new GravityGenerator(Vector3D(0, -9.8f, 0));
         m_gravityFloat = new GravityGenerator(Vector3D(0, 2.0f, 0));  // globo
+
+        // Viento: 20 m/s hacia +X dentro de una esfera de radio 30 centrada en (0,35,0)
+        m_wind = new WindGenerator(Vector3D(20, 0, 0), Vector3D(0, 35, 0), 30.f, 1.0f, 0.0f);
 
         float masses[3] = { 1.f, 5.f, 20.f };
         for (int i = 0; i < 3; ++i) {
@@ -40,6 +44,14 @@ public:
             c->setMass(masses[i]);
             m_particles.push_back(c);
             m_registry.add(c, m_gravityFloat);
+
+            // D) gravedad + viento, distintas masas
+            Particle* d = new Particle(Vector3D(-10 + i * 5.f, 50, 0), Vector3D(0, 0, 0),
+                Vector3D(0, 0, 0), 0.99f, 1.f, Vector4(1, 1, 0, 1));
+            d->setMass(masses[i]);
+            m_particles.push_back(d);
+            m_registry.add(d, m_gravity);   // varias fuerzas sobre la misma partícula
+            m_registry.add(d, m_wind);
         }
     }
 
@@ -47,14 +59,6 @@ public:
         m_registry.update(dt);                       // 1) acumular fuerzas
         for (Particle* p : m_particles)              // 2) integrar (limpia el acumulador)
             p->integrate(dt, TipoIntegracion::EulerSemiExplic);
-
-        m_time += dt;
-        if (!m_printed && m_time >= 2.0) {
-            m_printed = true;
-            for (size_t i = 0; i < m_particles.size(); ++i)
-                printf("particula %zu  masa=%.1f  y=%.4f\n", i,
-                    m_particles[i]->getMass(), m_particles[i]->getPosition().p.y);
-        }
     }
 
     void keyPress(unsigned char key, const physx::PxTransform& camera) override {}
@@ -65,6 +69,7 @@ public:
         m_particles.clear();
         delete m_gravity;      m_gravity = nullptr;
         delete m_gravityFloat; m_gravityFloat = nullptr;
+        delete m_wind; m_wind = nullptr;
     }
 
 private:
@@ -72,7 +77,5 @@ private:
     ForceRegistry m_registry;
     GravityGenerator* m_gravity = nullptr;
     GravityGenerator* m_gravityFloat = nullptr;
-
-    double m_time = 0.0;
-    bool m_printed = false;
+	WindGenerator* m_wind = nullptr;
 };
