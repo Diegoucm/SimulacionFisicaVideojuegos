@@ -1,6 +1,7 @@
 #pragma once
 #include "Scene.h"
 #include "ParticleSystem.h"
+#include "GravityGenerator.h"
 
 class P2_Scene : public Scene {
 public:
@@ -8,6 +9,10 @@ public:
 
     void init() override {
         m_system.setBounds(physx::PxVec3(-100, -5, -100), physx::PxVec3(100, 100, 100));
+
+        const bool useForceGravity = true;   // false = comportamiento anterior (acc a mano)
+        const Vector3D g(0, -10.0f, 0);
+        const Vector3D accValue = useForceGravity ? Vector3D(0, 0, 0) : g;
 
         // ---------- 1) FUENTE / MANGUERA ----------
         // Punto fijo, velocidad gaussiana alrededor de "hacia arriba", con gravedad -10.
@@ -17,7 +22,7 @@ public:
         fountain.dist = VelDistribution::Normal;
         fountain.velMean = Vector3D(0, 30, 0);
         fountain.velSpread = Vector3D(4, 3, 4);          // sigma por componente
-        fountain.acc = Vector3D(0, -10.0f, 0);
+        fountain.acc = accValue;
         fountain.radius = 0.3f;
         fountain.color = Vector4(0.2f, 0.5f, 1.0f, 1.0f);
         fountain.lifeTime = 7.0f;
@@ -33,7 +38,7 @@ public:
         fog.dist = VelDistribution::Uniform;
         fog.velMean = Vector3D(0, 0, 0);
         fog.velSpread = Vector3D(0.8f, 0.3f, 0.8f);      // semi-rango
-        fog.acc = Vector3D(0, -10.0f, 0);
+        fog.acc = accValue;
         fog.radius = 0.25f;
         fog.color = Vector4(0.85f, 0.85f, 0.9f, 0.15f);
         fog.lifeTime = 8.0f;
@@ -49,7 +54,7 @@ public:
         fire.dist = VelDistribution::Normal;
         fire.velMean = Vector3D(0, 15, 0);
         fire.velSpread = Vector3D(1.5f, 1.5f, 1.5f);
-        fire.acc = Vector3D(0, -10.0f, 0);
+        fire.acc = accValue;
         fire.damping = 0.9f;
         fire.radius = 0.4f;
         fire.color = Vector4(1.0f, 0.4f, 0.05f, 0.6f);
