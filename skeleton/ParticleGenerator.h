@@ -20,6 +20,8 @@ struct EmitterConfig {
     Vector3D acc = Vector3D(0, -10.0f, 0);    // gravedad del enunciado por defecto
     float damping = 0.99f;
     float radius = 0.3f;
+    float massMin = 1.0f;                     // masa: uniforme en [massMin, massMax]
+    float massMax = 1.0f;
     Vector4 color = Vector4(1, 1, 1, 1);
     float lifeTime = 5.0f;                    // segundos
 
@@ -58,6 +60,7 @@ private:
                    sampleVel(cfg.velMean.z, cfg.velSpread.z));
 
         Particle* part = new Particle(p, v, cfg.acc, cfg.damping, cfg.radius, cfg.color);
+        part->setMass(uniform((cfg.massMin + cfg.massMax) * 0.5f, (cfg.massMax - cfg.massMin) * 0.5f));
         part->setLifeTime(cfg.lifeTime);
         return part;
     }

@@ -21,7 +21,12 @@ public:
     }
 
     void update(double dt) {
-        for (auto& e : m_entries) e.gen->updateForce(e.particle, dt);
+
+        for (auto& e : m_entries) {
+            if (e.gen->isActive()) {
+                e.gen->updateForce(e.particle, dt);
+            }
+        }
     }
 
     void clear() { m_entries.clear(); }
