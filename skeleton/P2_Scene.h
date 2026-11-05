@@ -37,12 +37,12 @@ public:
         fog.posSpread = Vector3D(20, 3, 20);
         fog.dist = VelDistribution::Uniform;
         fog.velMean = Vector3D(0, 0, 0);
-        fog.velSpread = Vector3D(0.8f, 0.3f, 0.8f);      // semi-rango
+        fog.velSpread = Vector3D(0.8f, 0.5f, 0.8f);      // semi-rango
         fog.acc = accValue;
         fog.radius = 0.25f;
         fog.color = Vector4(0.85f, 0.85f, 0.9f, 0.15f);
         fog.lifeTime = 8.0f;
-        fog.rate = 60.0f;
+        fog.rate = 120.0f;
         m_system.addGenerator(fog);
 
         // ---------- 3) FUEGO ----------
@@ -61,6 +61,9 @@ public:
         fire.lifeTime = 2.0f;
         fire.rate = 100.0f;
         m_system.addGenerator(fire);
+
+		m_grav = new GravityGenerator(g);
+        m_system.addForceGenerator(m_grav);
     }
 
     void update(double dt) override {
@@ -73,6 +76,9 @@ public:
             if (ParticleGenerator* g = m_system.getGenerator(key - '1'))
                 g->toggle();
         }
+		if ((key == 'g' || key == 'G') && m_grav) {
+			    m_grav->toggle();
+		}
     }
 
     void cleanup() override {
@@ -81,4 +87,5 @@ public:
 
 private:
     ParticleSystem m_system;
+    GravityGenerator* m_grav = nullptr;
 };
