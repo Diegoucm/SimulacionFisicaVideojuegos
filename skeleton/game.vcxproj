@@ -276,6 +276,7 @@
     <ClInclude Include="callbacks.hpp" />
     <ClInclude Include="core.hpp" />
     <ClInclude Include="EmptyScene.h" />
+    <ClInclude Include="ExplosionGenerator.h" />
     <ClInclude Include="ForceGenerator.h" />
     <ClInclude Include="ForceRegistry.h" />
     <ClInclude Include="GravityGenerator.h" />
@@ -285,6 +286,7 @@
     <ClInclude Include="P2_Scene.h" />
     <ClInclude Include="P3_ParSys_Scene.h" />
     <ClInclude Include="P3_Scene.h" />
+    <ClInclude Include="P3_Torb_Expl_Scene.h" />
     <ClInclude Include="Particle.h" />
     <ClInclude Include="ParticleGenerator.h" />
     <ClInclude Include="ParticleSystem.h" />
@@ -295,6 +297,7 @@
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Vector3D.h" />
+    <ClInclude Include="WhirlwindGenerator.h" />
     <ClInclude Include="WindGenerator.h" />
   </ItemGroup>
   <ItemGroup>

@@ -44,6 +44,9 @@
     <ClInclude Include="P3_Scene.h" />
     <ClInclude Include="WindGenerator.h" />
     <ClInclude Include="P3_ParSys_Scene.h" />
+    <ClInclude Include="WhirlwindGenerator.h" />
+    <ClInclude Include="ExplosionGenerator.h" />
+    <ClInclude Include="P3_Torb_Expl_Scene.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Render">

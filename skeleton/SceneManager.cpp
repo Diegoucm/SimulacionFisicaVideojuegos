@@ -75,6 +75,10 @@ void SceneManager::keyPress(unsigned char key, const physx::PxTransform& cameraT
 		changeScene("P3_ParSys_Scene");
 		return;
 	}
+	else if (key == 'l' || key == 'L') {
+		changeScene("P3_Torb_Expl_Scene");
+		return;
+	}
 
 
     // Si no es una tecla de navegación global, se la pasamos a la escena activa
