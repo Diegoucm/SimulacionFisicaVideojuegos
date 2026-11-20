@@ -15,6 +15,8 @@
     <ClCompile Include="Vector3D.cpp" />
     <ClCompile Include="Particle.cpp" />
     <ClCompile Include="Projectile.cpp" />
+    <ClCompile Include="SpringForceGenerator.cpp" />
+    <ClCompile Include="AnchoredSpring.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.hpp" />
@@ -47,6 +49,9 @@
     <ClInclude Include="WhirlwindGenerator.h" />
     <ClInclude Include="ExplosionGenerator.h" />
     <ClInclude Include="P3_Torb_Expl_Scene.h" />
+    <ClInclude Include="SpringForceGenerator.h" />
+    <ClInclude Include="P4_Scene.h" />
+    <ClInclude Include="AnchoredSpring.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Render">

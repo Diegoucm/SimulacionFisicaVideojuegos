@@ -28,7 +28,7 @@ public:
         m_vortexSys.addGenerator(dust);
 
         m_vortexSys.addForceGenerator(new GravityGenerator(Vector3D(0, -9.8f, 0)));
-        m_vortex = new WhirlwindGenerator(vortexCenter, 0.8f, 67.f, 1.0f);   // K, radio, k1
+        m_vortex = new WhirlwindGenerator(vortexCenter, 0.8f, 30.f, 1.0f);   // K, radio, k1
         m_vortexSys.addForceGenerator(m_vortex);
 
         // ---------------- EXPLOSION ----------------
@@ -47,7 +47,7 @@ public:
         cloud.rate = 25.f;
         m_boomSys.addGenerator(cloud);
 
-        m_explosion = new ExplosionGenerator(boomCenter, 5000.f, 50.f, 0.67f);  // K, R, tau
+        m_explosion = new ExplosionGenerator(boomCenter, 100000.f, 50.f, 0.3f);  // K, R, tau
         m_boomSys.addForceGenerator(m_explosion);
     }
 
