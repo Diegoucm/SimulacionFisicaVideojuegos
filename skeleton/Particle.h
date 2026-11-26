@@ -5,11 +5,14 @@
 
 enum class TipoIntegracion { Euler, EulerSemiExplic, Verlet };
 
+enum class ParticleShape { Sphere, Box };
+
 class Particle
 {
 public:
-	Particle(Vector3D p, Vector3D v, Vector3D a, float damp, 
-			 float radius = 1.0f, Vector4 color = Vector4(1.0f, 0.0f, 0.0f, 1.0f)); 
+	Particle(Vector3D p, Vector3D v, Vector3D a, float damp,
+		float radius = 1.0f, Vector4 color = Vector4(1.0f, 0.0f, 0.0f, 1.0f),
+		ParticleShape shape = ParticleShape::Sphere);
 	// por ahora metemos la aceleracion aque pero luego lo quitaremos y la acel solo cambiara con fuerzas que se apliquen. 
 	// He añadido el radio y color con valores por defecto para poder cambiarlo si quiero crear particulas con distinto tamaño y color
 

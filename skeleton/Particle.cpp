@@ -1,9 +1,11 @@
 #include "Particle.h"
 
-Particle::Particle(Vector3D p, Vector3D v, Vector3D a, float damp, float radius, Vector4 color)
+Particle::Particle(Vector3D p, Vector3D v, Vector3D a, float damp, float radius, Vector4 color, ParticleShape shape)
 	: pos(physx::PxVec3(p.x, p.y, p.z)), vel(v), acc(a), damping(damp) {
-	physx::PxShape* shape = CreateShape(physx::PxSphereGeometry(radius));
-	renderItem = new RenderItem(shape, &pos, color);
+	physx::PxShape* shape_ = (shape == ParticleShape::Box)
+		? CreateShape(physx::PxBoxGeometry(radius, radius, radius))
+		: CreateShape(physx::PxSphereGeometry(radius));
+	renderItem = new RenderItem(shape_, &pos, color);
 	w = 1.0f;
 }
 

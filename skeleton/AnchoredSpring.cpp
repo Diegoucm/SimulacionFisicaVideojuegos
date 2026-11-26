@@ -2,8 +2,8 @@
 #include "Particle.h"
 
 AnchoredSpring::AnchoredSpring(double k, double restingLength, const Vector3D& anchor): SpringForceGenerator(k, restingLength, nullptr) {
-	//SpringForceGenerator(k, restingLength, nullptr);
-	_other = new Particle(anchor, Vector3D(0, 0, 0), Vector3D(0, 0, 0), 1.0f, 1.0f);
+
+	_other = new Particle(anchor, Vector3D(0, 0, 0), Vector3D(0, 0, 0), 1.0f, 0.5f, Vector4(1.0f, 0.0f, 1.0f, 1.0f), ParticleShape::Box);
 }
 
 AnchoredSpring::~AnchoredSpring() {
