@@ -30,6 +30,7 @@
 #include "P3_ParSys_Scene.h"
 #include "P3_Torb_Expl_Scene.h"
 #include "P4_Scene.h"
+#include "P4_Buoyancy_Scene.h"
 
 #include <foundation/PxSimpleTypes.h>
 #include <PxPhysicsVersion.h> // <- Macros for PhysX version checking
@@ -114,6 +115,7 @@ void initPhysics(bool interactive)
 	SceneManager::instance().registerScene<P3_ParSys_Scene>("P3_ParSys_Scene");
 	SceneManager::instance().registerScene<P3_Torb_Expl_Scene>("P3_Torb_Expl_Scene");
 	SceneManager::instance().registerScene<P4_Scene>("P4_Scene");
+	SceneManager::instance().registerScene<P4_Buoyancy_Scene>("P4_Buoyancy_Scene");
 	
 	// Cargar la escena inicial
 	SceneManager::instance().changeScene("EscenaVacia");

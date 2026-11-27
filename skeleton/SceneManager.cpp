@@ -79,11 +79,14 @@ void SceneManager::keyPress(unsigned char key, const physx::PxTransform& cameraT
 		changeScene("P3_Torb_Expl_Scene");
 		return;
 	}
-    else if( key == 'k' || key == 'K') {
+    else if( key == 'j' || key == 'J') {
         changeScene("P4_Scene");
         return;
 	}
-
+    else if (key == 'q' || key == 'Q') {
+        changeScene("P4_Buoyancy_Scene");
+        return;
+    }
 
     // Si no es una tecla de navegación global, se la pasamos a la escena activa
     if (m_currentScene != nullptr) {

@@ -17,6 +17,8 @@
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="SpringForceGenerator.cpp" />
     <ClCompile Include="AnchoredSpring.cpp" />
+    <ClCompile Include="BuoyancyForceGenerator.cpp" />
+    <ClCompile Include="LiquidDragForceGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.hpp" />
@@ -52,6 +54,9 @@
     <ClInclude Include="SpringForceGenerator.h" />
     <ClInclude Include="P4_Scene.h" />
     <ClInclude Include="AnchoredSpring.h" />
+    <ClInclude Include="BuoyancyForceGenerator.h" />
+    <ClInclude Include="P4_Buoyancy_Scene.h" />
+    <ClInclude Include="LiquidDragForceGenerator.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Render">
